@@ -1,0 +1,33 @@
+class Solution
+{
+    public:
+    vector<int> find(int arr[], int n , int x )
+    {
+        // code here
+        int f=-1,l=-1;
+        bool flag=0;
+        for(int i=0 ; i<n ; i++)
+        {
+            if(arr[i]==x && !flag)
+            {
+                f=i;
+                flag=1;
+                continue;
+            }
+            
+            else if(arr[i]==x && flag)
+            {
+                l=i;
+            }
+        }
+        if(l==-1 && f!=-1)
+            return {f,f};
+            
+        else if(!flag)
+        {
+            return {-1,-1};
+        }
+        
+        return {f,l};
+    }
+};
