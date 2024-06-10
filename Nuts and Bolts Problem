@@ -21,5 +21,10 @@ class Solution {
                 z++;
             }
         }
+
+    // OR YOU CAN DO THIS
+        
+        // sort(nuts,nuts+n);
+        // sort(bolts,bolts+n);
     }
 };
