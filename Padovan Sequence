@@ -1,0 +1,43 @@
+Approach 1  : Using Vector
+-----------  --------------
+
+class Solution {
+  public:
+    int padovanSequence(int n) {
+        // code here.
+        vector<int> v(3,1);
+        if(n<=2)
+            return 1;
+        int mod=1e9+7;
+        int sum=0;
+        for(int i=3 ; i<=n ; i++)
+        {
+            v.push_back((v[i-2]+v[i-3])%mod);
+        }
+        
+        return v[n];
+    }
+};
+
+Approach 2 : Using Loop
+----------  ------------
+
+class Solution {
+  public:
+    int padovanSequence(int n) {
+        // code here.
+        if(n<3)
+            return 1;
+        int a=1,b=1,c=1;
+        int sum=0;
+        int mod=1e9+7;
+        for(int i=3 ; i<=n ; i++)
+        {
+            sum=(a+b)%mod;
+            a=b;
+            b=c;
+            c=sum;
+        }
+        return (sum)%mod;
+    }
+};
