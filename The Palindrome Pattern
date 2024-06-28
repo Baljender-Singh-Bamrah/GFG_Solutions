@@ -1,0 +1,39 @@
+class Solution {
+  public:
+
+    string pattern(vector<vector<int>> &arr) {
+        // Code Here
+        int n = arr.size();
+        
+        for(int i=0 ; i<n ; i++)
+        {
+            vector<int> temp;
+            vector<int> row=arr[i];
+            reverse(row.begin(),row.end());
+            if(row==arr[i])
+            {
+                string str = to_string(i)+" R";
+                return str;
+            }
+        }
+        
+        for(int i=0 ; i<arr[0].size() ; i++)
+        {
+            vector<int> res,temp;
+            for(int j=0 ; j<arr.size() ; j++)
+            {
+                res.push_back(arr[j][i]);
+                temp.push_back(arr[j][i]);
+            }
+            reverse(temp.begin(),temp.end());
+            if(temp==res)
+            {
+                string str = to_string(i)+" C";
+                return str;
+            }
+        }
+        
+        return "-1";
+        
+    }
+};
