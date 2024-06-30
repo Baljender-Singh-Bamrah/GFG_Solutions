@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    Node* deleteNode(Node* head, int z) {
+        // Your code here
+        if(z==1)
+            return head->next;
+        int n=1;
+        Node *temp=head;
+        while(n!=z)
+        {
+            temp=temp->next;
+            n++;
+        }
+        Node *x=head;
+        while(x->next!=temp)
+        {
+            x=x->next;
+        }
+        x->next=temp->next;
+        return head;
+    }
+};
