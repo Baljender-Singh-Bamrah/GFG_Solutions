@@ -1,3 +1,27 @@
+Approach 1 :
+
+class Solution {
+  public:
+    Node* deleteNode(Node* head, int z) {
+        // Your code here
+        if(z==1)
+            return head->next;
+        int n=1;
+        Node *temp=head;
+        while(n!=z-1)
+        {
+            temp=temp->next;
+            n++;
+        }
+        
+        temp->next=temp->next->next;
+        return head;
+    }
+};
+
+
+Approach 2 :
+
 class Solution {
   public:
     Node* deleteNode(Node* head, int z) {
