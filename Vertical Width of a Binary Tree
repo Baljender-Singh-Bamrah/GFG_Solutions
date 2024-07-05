@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maxi = 0;
+    int mini = 0;
+    void Solve(Node* root, int distance)
+    {
+        if(root == NULL)
+           return;
+        maxi = max(maxi,distance);
+        mini = min(mini,distance);
+        
+        Solve(root->left,distance-1);
+        Solve(root->right, distance+1);
+        
+    }
+    int verticalWidth(Node* root) {
+        // code here
+       if(root == NULL)
+          return 0;
+          
+       Solve(root,0);
+       return (maxi-mini)+1;
+    }
+};
