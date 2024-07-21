@@ -1,0 +1,54 @@
+class Solution {
+  public:
+    long long int findMaxProduct(vector<int>& arr) {
+        
+        if(arr.size() == 1)
+            return arr[0];
+        
+        sort(arr.begin() , arr.end());
+        int minus = 0;
+        
+        for(int i=0;i<arr.size();i++)
+        {
+            if(arr[i]<0)
+                minus++;
+        }
+        
+        int mod = 1e9+7;
+        bool flag = true;
+        long long int product = 1;
+        
+        if(minus%2 == 0)
+        {
+            for(int i=0;i<minus;i++)
+            {
+                product = (product * arr[i]) % mod;
+                flag = false;
+            }
+        }
+        
+        else
+        {
+            for(int i=0;i<minus-1;i++)
+            {
+                product = (product * arr[i]) % mod;
+                flag = false;
+            }
+        }
+        
+        for(int i=minus;i<arr.size();i++)
+        {
+            if(arr[i]>0)
+            {
+                product = (product * arr[i]) % mod;
+                flag = false;
+            }
+        }
+        
+        if(product == 1 && flag)
+            return 0;
+        
+        return product % mod;
+        
+    }
+};
