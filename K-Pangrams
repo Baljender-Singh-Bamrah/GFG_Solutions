@@ -1,0 +1,35 @@
+class Solution {
+  public:
+
+    bool kPangram(string str, int k) {
+        // code here
+        if(str.size()<26)
+            return false;
+            
+        int count=0;
+        int arr[26]={0};
+        int size=0;
+        for(auto it:str)
+        {
+            if(it>='a' && it<='z'){
+                arr[it-'a']++;
+                size++;
+            }
+        }
+        
+        if(size<26)
+            return false;
+        
+        for(auto it:arr)
+        {
+            if(it==0){
+                count++;
+            }
+        }
+        
+        if(count<=k)
+            return true;
+            
+        return false;
+    }
+};
