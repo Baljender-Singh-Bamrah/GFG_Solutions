@@ -1,0 +1,42 @@
+class Solution {
+  public:
+    // Function to find if there is a celebrity in the party or not.
+    int celebrity(vector<vector<int> >& mat) {
+        bool flag = true;
+        int n = mat.size();
+        
+        for(int i=0;i<mat.size();i++)
+        {
+            int c = count(mat[i].begin(), mat[i].end(), 1);
+            
+            if(c != 0)
+                flag = false;
+        }
+        
+        if(n > 2 && flag == true)
+            return -1;
+
+        
+        
+        int c=-1, k;
+        for(int i=0;i<mat.size();i++)
+        {
+            k = count(mat[i].begin(), mat[i].end(), 1);
+            if(k==0)
+            {
+                c=i;
+                break;
+             }
+        }
+        if(c==-1)
+              return -1;
+        for(int i=0;i<mat.size();i++)
+        {
+            if(mat[i][c]==0 && i!=c){
+                return -1;
+            }
+        }
+        
+        return c;
+    }
+};
