@@ -1,0 +1,25 @@
+class Solution{
+public:
+    vector<int> maxMeetings(int N,vector<int> &S,vector<int> &F){
+        vector<pair<pair<int,int>,int>> p;
+        for(int i=0 ; i<N ; i++)
+        {
+            p.push_back({{F[i],S[i]},i+1});
+        }
+        sort(p.begin(),p.end());
+        vector<int> ans;
+        ans.push_back(p[0].second);
+        int check=p[0].first.first;
+        for(int i=1 ; i<N ; i++)
+        {
+            if(p[i].first.second>check){
+                ans.push_back(p[i].second);
+                check=p[i].first.first;
+            }
+        }
+        
+        sort(ans.begin(),ans.end());
+        
+        return ans;
+    }
+};
