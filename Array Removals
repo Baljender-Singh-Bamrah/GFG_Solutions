@@ -1,0 +1,27 @@
+class Solution{
+    public:
+    int removals(vector<int>& arr, int k){
+        
+        int n = arr.size();
+        int i=0 , j=1;
+        
+        sort(arr.begin(), arr.end());
+        int result = n-1;
+        
+        while(j<n)
+        {
+            if((arr[j]-arr[i]) <= k)
+            {
+                result = min(result, i+(n-j-1));
+                j++;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        
+        return result;
+        
+    }
+};
