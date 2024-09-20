@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    // Returns count buildings that can see sunlight
+    int countBuildings(vector<int> &h) {
+        // code here
+        int sum=1;
+        int m=h[0];
+        for(int i=1 ; i<h.size() ; i++){
+            if(h[i]>m){
+                sum++;
+                m=h[i];
+            }
+        }
+        return sum;
+    }
+};
