@@ -1,0 +1,41 @@
+class Solution{
+  public:
+  long long int wineSelling(vector<int>& Arr, int N){
+      //Code here.
+      vector<pair<int,int>> n,p;
+      for(int i=0 ; i<N ; i++){
+          if(Arr[i]<0){
+              n.push_back({-Arr[i],i});
+          }
+          else if(Arr[i]>0){
+              p.push_back({Arr[i],i});
+          }
+      }
+      if(p.empty()){
+          return 0;
+      }
+      int i=0,j=0;
+      long long int sum=0;
+      while(i<p.size()){
+          if(n[j].first==p[i].first){
+              sum+=n[j].first*abs(p[i].second-n[j].second);
+              i++;
+              j++;
+          }
+          
+          else if(n[j].first<p[i].first){
+              sum+=n[j].first*abs(p[i].second-n[j].second);
+              p[i].first-=n[j].first;
+              j++;
+          }
+          
+          else{
+              sum+=p[i].first*abs(p[i].second-n[j].second);
+              n[j].first-=p[i].first;
+              i++;
+          }
+      }
+      
+      return sum;
+  }
+};
