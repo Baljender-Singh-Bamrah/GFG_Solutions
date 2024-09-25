@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    // Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head) {
+        // Your code here
+        vector<int> a;
+        
+        while(head){
+            a.push_back(head->data);
+            head=head->next;
+        }
+        
+        vector<int> b(a);
+        
+        reverse(b.begin(),b.end());
+        
+        return a==b;
+    }
+};
