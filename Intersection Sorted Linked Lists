@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    Node* findIntersection(Node* h1, Node* h2) {
+        // code goes here.
+        Node *ans=new Node(0);
+        Node *c=ans;
+        while(h1 && h2){
+            if(h1->data==h2->data){
+                c->next=new Node(h1->data);
+                h1=h1->next;
+                h2=h2->next;
+                c=c->next;
+            }
+            
+            else if(h1->data<h2->data){
+                h1=h1->next;
+            }
+            
+            else{
+                h2=h2->next;
+            }
+        }
+        return ans->next;
+    }
+};
