@@ -1,0 +1,19 @@
+class solution {
+  public:
+    long long multiplyTwoLists(Node *first, Node *second) {
+        // code here
+        string p1="";
+        string p2="";
+        while(first!=NULL){
+            p1.push_back(first->data+'0');
+            first=first->next;
+        }
+         while(second!=NULL){
+            p2.push_back(second->data+'0');
+            second=second->next;
+        }
+        long long n1=stoll(p1);
+        long long n2=stoll(p2);
+        return (n1*n2)%1000000007;
+    }
+};
