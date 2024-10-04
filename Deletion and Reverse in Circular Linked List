@@ -1,0 +1,52 @@
+class Solution {
+  public:
+    // Function to reverse a circular linked list
+    Node* reverse(Node* head) {
+        // code here
+        Node *temp=head->next;
+        int size=1;
+        stack<int> ans;
+        ans.push(head->data);
+        while(temp!=head){
+            size++;
+            ans.push(temp->data);
+            temp=temp->next;
+        }
+        
+        while(!ans.empty()){
+            temp->data=ans.top();
+            ans.pop();
+            temp=temp->next;
+        }
+        return head;
+    }
+
+    // Function to delete a node from the circular linked list
+    Node* deleteNode(Node* head, int key) {
+        // code here
+        Node *temp=head , *c=head , *d=head;
+        if(head->data==key){
+            Node *tem=head->next;
+            while(tem->next!=head){
+            tem=tem->next;
+        }
+            tem->next=head->next;
+            return head->next;;
+        }
+        do{
+            temp=temp->next;
+            if(temp->data==key){
+                if(!temp->next){
+                    c->next=NULL;
+                }
+                else{
+                    c->next=temp->next;
+                }
+                break;
+            }
+            c=c->next;
+        }while(temp!=d);
+        
+        return head;
+    }
+};
