@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    int pairsum(vector<int> &arr) {
+        int m,sm;
+        m=0;sm=0;
+        for(auto it:arr){
+            if(it>m){
+                sm=m;m=it;
+            }
+            else if(it<m && it>sm)
+                sm=it;
+        }
+        return m+sm;
+        // code here
+    }
+};
