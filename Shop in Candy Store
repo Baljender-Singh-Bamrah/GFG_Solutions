@@ -5,20 +5,20 @@ public:
     {
         // Write Your Code here
         int l=0,r=N-1;
-        int s=0;
+        int min=0;
         sort(c,c+N);
         while(l<=r){
-            s+=c[l++];
+            min+=c[l++];
             r-=K;
         }
         l=0;
         r=N-1;
-        int m=0;
+        int max=0;
         while(l<=r){
-            m+=c[r--];
+            max+=c[r--];
             l+=K;
         }
         
-        return {s,m};
+        return {min,max};
     }
 };
