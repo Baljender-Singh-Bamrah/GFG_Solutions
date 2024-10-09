@@ -32,3 +32,32 @@ class Solution
         return ans;
     }
 };
+
+
+Approach 2 : 
+
+class Solution
+{
+  public:
+    string secFrequent (string arr[], int n)
+    {
+        unordered_map<string, int> mp;
+        
+        for(int i=0;i<n;i++) {
+            mp[arr[i]]++;
+        }
+        
+        vector<pair<int , string>> pr;
+        
+        for(auto it : mp) {
+            pr.push_back({it.second , it.first});
+        }
+    
+        sort(pr.begin(), pr.end());
+        
+        if(pr.size() < 2)
+            return "";
+        
+        return pr[pr.size()-2].second;
+    }
+};
