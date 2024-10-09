@@ -1,0 +1,24 @@
+class Solution
+{
+public:
+    vector<int> candyStore(int c[], int N, int K)
+    {
+        // Write Your Code here
+        int l=0,r=N-1;
+        int s=0;
+        sort(c,c+N);
+        while(l<=r){
+            s+=c[l++];
+            r-=K;
+        }
+        l=0;
+        r=N-1;
+        int m=0;
+        while(l<=r){
+            m+=c[r--];
+            l+=K;
+        }
+        
+        return {s,m};
+    }
+};
