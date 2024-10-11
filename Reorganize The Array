@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    vector<int> rearrange(const vector<int>& arr) {
+        // Code here
+        int n=arr.size();
+        vector<int> ans(n,-1);
+        for(auto it : arr){
+            if (it < 0 || it > n) {
+             continue;
+            }
+            ans[it]=it;
+        }
+        return ans;
+    }
+};
