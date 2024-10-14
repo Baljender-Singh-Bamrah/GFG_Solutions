@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    vector<int> duplicates(vector<int> arr) {
+        // code here
+        unordered_map<int,int> mp;
+        for(auto it:arr){
+            mp[it]++;
+        }
+        vector<int> result;
+        for(auto it:mp){
+            if(it.second>1){
+                result.push_back(it.first);
+            }
+        }
+        if(result.size()==0){
+            return {-1};
+        }
+        
+        sort(result.begin(),result.end());
+        
+        return result;
+    }
+};
