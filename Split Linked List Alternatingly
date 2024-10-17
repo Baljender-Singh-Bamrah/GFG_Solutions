@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    // Function to split a linked list into two lists alternately
+    vector<Node*> alternatingSplitList(struct Node* head) {
+        // Your code here
+        struct Node *one=new struct Node(0);
+        struct Node *two=new struct Node(0);
+        struct Node *t1=one , *t2=two;
+        int k=0;
+        while(head){
+            if(k%2==0){
+                one->next=new struct Node(head->data);
+                one=one->next;
+            }
+            
+            else{
+                two->next=new struct Node(head->data);
+                two=two->next;
+            }
+            k++;
+            head=head->next;
+        }
+        // vector<Node*> ans;
+        return {t1->next,t2->next};
+    }
+};
