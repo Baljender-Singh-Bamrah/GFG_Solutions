@@ -1,0 +1,33 @@
+class Solution {
+    public:
+        DLLNode *sortAKSortedDLL(DLLNode *head, int k) {
+            priority_queue<int, vector<int> , greater<>> pq;
+            DLLNode *temp = head;
+            k++;
+            while(temp && k--) {
+                pq.push(temp->data);
+                temp = temp->next;
+            }
+            DLLNode *t = head;
+         
+            while(temp) {
+                t->data=pq.top();
+                pq.pop();
+                
+                if(temp) {
+                    pq.push(temp->data);
+                }
+                
+                temp = temp->next;
+                t=t->next;
+            }
+            
+            while(!pq.empty() && t) {
+                t->data=pq.top();
+                pq.pop();
+                t=t->next;
+            }
+            
+            return head;
+        }
+};
