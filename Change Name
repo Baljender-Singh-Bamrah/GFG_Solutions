@@ -1,0 +1,57 @@
+vector<int> modifyAndRearrangeArray(vector<int> &arr) {
+        // Complete the function
+        queue<int> zero_indexes;
+        for(int i=0 ; i<arr.size()-1 ; i++)
+        {
+            if(arr[i] == 0)
+            {
+                zero_indexes.push(i);
+            }
+            else
+            {
+                int index = i;
+                if(!zero_indexes.empty())
+                {
+                    index = zero_indexes.front();
+                    zero_indexes.pop();
+                }
+                
+                if(index != i)
+                {
+                    if(arr[i] == arr[i+1])
+                    {
+                        arr[index] = arr[i]*2;
+                        arr[i] = 0;
+                        zero_indexes.push(i);
+                        arr[i+1] = 0;
+                        zero_indexes.push(i+1);
+                        i++;
+                    }
+                    else
+                    {
+                        arr[index] = arr[i];
+                        arr[i] = 0;
+                        zero_indexes.push(i);
+                    }
+                }
+                else
+                {
+                    if(arr[i] == arr[i+1])
+                    {
+                        arr[i] = arr[i]*2;
+                        arr[i+1] = 0;
+                        zero_indexes.push(i+1);
+                        i++;
+                    }
+                    
+                }
+            }
+            
+        }
+        if(arr[arr.size()-1] != 0 && !zero_indexes.empty())
+        {
+            arr[zero_indexes.front()] = arr[arr.size()-1];
+            arr[arr.size()-1] = 0;
+        }
+        return arr;
+    }
