@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    vector<int> removeDuplicate(vector<int>& arr) {
+        // code here
+        unordered_map<int,int> mp;
+        vector<int> ans;
+        for(auto it : arr){
+            if(mp.find(it)==mp.end()){
+                ans.push_back(it);
+            }
+            mp[it]++;
+        }
+        return ans;
+    }
+};
