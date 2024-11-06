@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    int ans=0;
+    void solve(Node *root, int par){
+        int curr=root->data+par;
+        if(!root->left && !root->right) {
+            ans += curr;
+            return;
+        }
+        if(root->left) solve(root->left, 10*curr);
+        if(root->right) solve(root->right, 10*curr);
+    }
+    int treePathsSum(Node *root) {
+        // code here.
+        solve(root, 0);
+        return ans;
+    }
+};
