@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    // Function to find the majority elements in the array
+    vector<int> findMajority(vector<int>& arr) {
+        // Your code goes here.
+        int s=arr.size();
+        unordered_map<int,int> mp;
+        vector<int> res;
+        for(auto it:arr)
+            mp[it]++;
+        for(auto it:mp){
+            if(it.second>s/3)
+                res.push_back(it.first);
+        }
+        sort(res.begin(),res.end());
+        return res;
+    }
+};
