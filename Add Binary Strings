@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string addBinary(string& s1, string& s2) {
+        string result;
+        int n1 = s1.size(), n2 = s2.size();
+        int carry = 0;
+
+        int i = n1 - 1, j = n2 - 1;
+
+        // Add digits from the end of both strings
+        while (i >= 0 || j >= 0 || carry) {
+            int sum = carry;
+            
+            if (i >= 0) sum += s1[i--] - '0'; // Convert '0'/'1' to int
+            if (j >= 0) sum += s2[j--] - '0'; // Convert '0'/'1' to int
+
+            result = char((sum % 2) + '0') + result; // Append binary digit
+            carry = sum / 2; // Update carry
+        }
+        
+        int a = 0;
+        int n = result.size();
+        
+        while(result[a] == '0')
+            a++;
+    
+        return result.substr(a, n);
+    }
+};
