@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    // Function is to check whether two strings are anagram of each other or not.
+    bool areAnagrams(string& s1, string& s2) {
+        // Your code here
+        vector<char> arr1(26,0) , arr2(26,0);
+        for(auto it : s1) {
+            arr1[it-'a']++;
+        }
+        for(auto it : s2) {
+            arr2[it-'a']++;
+        }
+        
+        return arr1==arr2;
+    }
+};
