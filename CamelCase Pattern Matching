@@ -1,0 +1,30 @@
+class Solution {
+  public:
+    vector<string> camelCase(vector<string> &arr, string &pat) {
+        // code here
+        vector<string> res;
+        for (string word : arr) {
+    
+            int i = 0, j = 0;
+            while (i < word.length() && j < pat.length()) {
+    
+                if (islower(word[i])) {
+                    i++;
+                }
+                
+                else if (word[i] != pat[j]) {
+                    break;
+                }
+    
+                else {
+                    i++;
+                    j++;
+                }
+            }
+            if (j == pat.length())
+                res.push_back(word);
+        }
+    
+        return res;
+    }
+};
