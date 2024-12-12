@@ -1,0 +1,7 @@
+class Solution {
+  public:
+    int countFreq(vector<int>& arr, int target) {
+        // code here
+        return count(arr.begin() , arr.end() , target);
+    }
+};
