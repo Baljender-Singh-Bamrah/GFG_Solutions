@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    // Function to search a given number in row-column sorted matrix.
+    bool searchRowMatrix(vector<vector<int>> &mat, int x) {
+        // code here
+        int i,j;
+        for(i=0;i<mat.size();i++)
+        {
+            for(j=0;j<mat[i].size();j++)
+            {
+                if(mat[i][j]==x)return true;
+            }
+        }
+        return false;
+    }
+};
