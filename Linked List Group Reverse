@@ -16,7 +16,6 @@ class Solution {
             it++;
         }
         
-        
         head->next = reverseKGroup(curr,k);
         return prev;
     }
