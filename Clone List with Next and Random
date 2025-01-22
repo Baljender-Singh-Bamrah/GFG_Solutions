@@ -1,0 +1,37 @@
+class Solution {
+  public:
+    Node *cloneLinkedList(Node *head) {
+        // Write your code here
+        Node* copyList = new Node(-1);
+       Node* copyListTail = copyList;
+       
+       unordered_map<Node*, Node*> mapping;
+       
+       
+       //copy data of first LL
+       Node* itr = head;
+       while(itr!=NULL){
+           Node* temp = new Node(itr->data);
+           copyListTail->next = temp;
+           copyListTail= copyListTail->next;
+           
+           mapping[itr] = temp;  
+           itr=itr->next;
+       }
+       
+        itr = head;
+        Node* itr2=copyList->next;
+       
+       //copy random pointers here 
+       while(itr!=NULL && itr2!=NULL){
+           itr2->random = mapping[itr->random];
+           
+           itr=itr->next;
+           itr2=itr2->next;
+       }
+       
+       
+       
+       return copyList->next;
+    }
+};
