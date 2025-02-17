@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    vector<int> largestSquare(vector<vector<int>> M, int R, int C, int K, int Q, int q_i[], int q_j[]) {
+        // code here
+        vector<int> res;
+        for(int q=0 ; q<Q ; q++) {
+            int i = q_i[q];
+            int j = q_j[q];
+            int ans=0;
+            int min_dis = min( min(i,j) , min(R-i-1 , C-j-1));
+            
+            for(int k=0 ; k<=min_dis ; k++) {
+                int count=0;
+                for(int row=i-k ; row<=k+i ; row++ )
+                    for(int col = j-k ; col<=j+k ; col++)
+                        count+=M[row][col];
+                    
+                if(count>K)
+                    break;
+                
+                ans= k*2 + 1;
+            }
+            res.push_back(ans);
+        }
+        return res;
+    }
+};
