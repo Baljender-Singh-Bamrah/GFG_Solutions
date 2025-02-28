@@ -1,0 +1,29 @@
+class Solution {
+  public:
+    typedef long long ll;
+    int evaluate(vector<string>& arr) {
+        stack<ll> st;
+
+        for (string& s : arr) {
+            if (s != "+" && s != "-" && s != "/" && s != "*") {
+                st.push(stoll(s));
+            } else {
+                ll a = st.top();
+                st.pop();
+                ll b = st.top();
+                st.pop();
+
+                if (s == "+") {
+                    st.push(b + a);
+                } else if (s == "-") {
+                    st.push(b - a);
+                } else if (s == "/") {
+                    st.push(b / a);
+                } else if (s == "*") {
+                    st.push(b * a);
+                }
+            }
+        }
+        return st.top();
+    }
+};
