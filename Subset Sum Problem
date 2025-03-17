@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool help(int idx, vector<int> &arr, int sum, vector<vector<int>> &dp){
+        if(sum == 0) return true;
+        
+        if(idx >= arr.size()) return false;
+        
+        if(dp[idx][sum] != -1) return dp[idx][sum];
+        
+        bool choose = false;
+        
+        if(sum >= arr[idx])
+            choose = help(idx + 1, arr, sum - arr[idx], dp);
+            
+        bool notChoose = help(idx + 1, arr, sum, dp);
+        
+        return dp[idx][sum] = (choose | notChoose);
+    }
+    
+    bool isSubsetSum(vector<int>& arr, int sum) {
+        sort(arr.begin(), arr.end());
+        
+        int n = arr.size();
+        
+        vector<vector<int>> dp(n + 1, vector<int>(sum + 1, -1));
+        
+        bool ans = help(0, arr, sum, dp);
+        
+        return ans;
+    }
+};
