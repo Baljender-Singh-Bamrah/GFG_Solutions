@@ -1,0 +1,13 @@
+class Solution {
+  public:
+    int missingNum(vector<int>& arr) {
+        // code here
+        sort(arr.begin(), arr.end());
+        int cnt = 1;
+        for(auto it: arr) {
+            if(cnt!=it) return cnt;
+            cnt++;
+        }
+        return cnt;
+    }
+};
