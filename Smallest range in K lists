@@ -1,0 +1,47 @@
+#define ppi pair<int, pair<int, int>>
+class Solution {
+public:
+    vector<int> findSmallestRange(vector<vector<int>>& arr) {
+        int k = arr.size(); // Number of lists
+        priority_queue<ppi, vector<ppi>, greater<ppi>> min_heap; // Min-heap to track smallest element
+        
+        vector<int> ans(2); // To store the result range [start, end]
+        ans[0] = -1;        // Initialize with invalid range
+        ans[1] = 1e9;       // Initialize with a large number
+        
+        int current_max = INT_MIN; // Tracks the current maximum in the heap
+        
+        // Push the first element of each list into the heap
+        for(int i = 0; i < k; ++i) {
+            min_heap.push({arr[i][0], {i, 0}}); // (value, (row, column))
+            current_max = max(current_max, arr[i][0]); // Update current_max
+        }
+        
+        while(!min_heap.empty()) {
+            auto top = min_heap.top();
+            int current_min = top.first; // Smallest element in the heap
+            int row = top.second.first; // Row (list) index
+            int col = top.second.second; // Column (element) index
+            min_heap.pop();
+            
+            // Check if current range is smaller than the previous best
+            if(current_max - current_min < ans[1] - ans[0]) {
+                ans[0] = current_min;
+                ans[1] = current_max;
+            }
+            
+            // If we have reached the end of any list, break (since we can't extend further)
+            if(col + 1 == arr[row].size()) {
+                break;
+            }
+            else {
+                // Push the next element from the same list into the heap
+                int next_element = arr[row][col + 1];
+                min_heap.push({next_element, {row, col + 1}});
+                current_max = max(current_max, next_element); // Update current_max
+            }
+        }
+        
+        return ans;
+    }
+};
