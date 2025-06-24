@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    string maxSubseq(string& s, int k) {
+        stack<char> stk;
+        for(auto& ch:s){
+            while(!stk.empty() && k && stk.top()<ch){
+                stk.pop();
+                k--;
+            }
+            stk.push(ch);
+        }
+        while(!stk.empty() && k){
+            stk.pop();
+            k--;
+        }
+        string ans="";
+        while(!stk.empty()){
+            ans+=stk.top();
+            stk.pop();
+        }
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
