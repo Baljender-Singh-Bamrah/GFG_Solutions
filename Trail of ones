@@ -1,15 +1,17 @@
 class Solution {
   public:
-    int numberOfConsecutiveOnes(int n) {
+  int fib(int n){
+      int first=1,second=1;
+      int sum=0;
+      for(int i=3;i<=n;i++){
+          sum=first+second;
+          first=second;
+          second=sum;
+      }
+      return sum;
+  }
+    int countConsec(int n) {
         // code here
-         if(n==2)return 1;
-        int a=0,b=1,ans=1,mod=1e9+7;
-        for(int i=3; i<=n; i++){
-            int c=(a+b)%mod;
-            a=b;
-            b=c;
-            ans=((ans*2)%mod+c)%mod;
-        }
-        return ans;
+        return (1<<n) - fib(n+2);
     }
 };
