@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    int missingNumber(vector<int> &arr) {
+        int n = arr.size();
+        vector<int> miss(n, -1);
+        
+        for(auto &it: arr) {
+            if(it>0 && it<=n)
+                miss[it-1] = 1;
+        }
+        
+        for(int i=0 ; i<n ; i++) {
+            if(miss[i]==-1) return i+1; 
+        }
+        return n+1;
+    }
+};
