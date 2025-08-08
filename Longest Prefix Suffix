@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    int getLPSLength(string &str) {
+        // code here
+        int i=1 , j=0;
+        int n = str.size();
+        vector<int> vec(n,0);
+        
+        while(i<n){
+            if(str[i] == str[j])
+            {
+                vec[i] = j+1;
+                i++;    j++;
+            }
+            else
+            {
+                if(j != 0)
+                    j = vec[j-1];
+                else
+                    i++;
+            }
+        }
+        
+        return vec[n-1];
+    }
+};
