@@ -1,26 +1,16 @@
 class Solution {
   public:
-    // Function to find the length of a loop in the linked list.
-    int countNodesinLoop(Node *head) {
-        Node *fast = head;
-        Node *slow = head;
-        int len = 1;
-        while(fast!=NULL&&fast->next!=NULL){
-            slow = slow->next;
-            fast = fast->next->next;
-            if(fast == slow){
-                slow = head;
-                while(slow!=fast){
-                    slow = slow->next;
-                    fast = fast->next;
-                }
-                fast = fast->next;
-                while(fast != slow){
-                    len++;
-                    fast=fast->next;
-                }
-                return len;
+    int lengthOfLoop(Node *head) {
+        // code here
+        unordered_map<Node*, int> mp;
+        int cnt = 1;
+        while(head) {
+            if(mp.count(head)) {
+                return cnt - mp[head] ;
             }
+            mp[head] = cnt;
+            cnt++;
+            head = head->next;
         }
         return 0;
     }
