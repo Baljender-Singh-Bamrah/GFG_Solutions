@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int evaluatePostfix(vector<string>& arr) {
+        stack<int> st;
+        for (auto& z : arr) {
+            if (z == "+" || z == "-" || z == "*" || z == "/" || z == "^") {
+                int b = st.top(); st.pop();
+                int a = st.top(); st.pop();
+                if (z == "+") st.push(a + b);
+                else if (z == "-") st.push(a - b);
+                else if (z == "*") st.push(a * b);
+                else if (z == "/") st.push(floor((float)a / b));
+                else st.push(pow(a, b));
+            } else {
+                st.push(stoi(z));
+            }
+        }
+        return st.top();
+    }
+};
