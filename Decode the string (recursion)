@@ -1,0 +1,36 @@
+class Solution {
+  public:
+    string decodedString(string &s) {
+        // code here
+        stack<string> st, k;
+        string ans = "", num = "";
+        for(auto &it: s) {
+            if(isdigit(it)) {
+                num+= it;
+            } 
+            else if(isalpha(it)) {
+                ans+=it;
+            }
+            else if(it=='[') {
+                k.push(num);
+                st.push(ans);
+                ans = "";
+                num = "";
+            } 
+            else {
+                int cnt = stoi(k.top());
+                k.pop();
+                
+                string str = st.top();
+                st.pop();
+                
+                while(cnt--) {
+                    str+=ans;
+                }
+                
+                ans = str;
+            } 
+        }
+        return ans;
+    }
+};
