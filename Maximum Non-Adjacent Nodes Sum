@@ -1,0 +1,43 @@
+/*
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+    Node(int val) {
+        data = val;
+        left = nullptr;
+        right = nullptr;
+    }
+};
+*/
+
+class Solution {
+    int dfs(Node *root, unordered_map<Node* ,int>& dp) {
+        if(!root) return 0;
+        
+        if(dp[root]) return dp[root];
+        
+        int take = root->data;
+        
+        if(root->left) {
+            take += dfs(root->left->left, dp); 
+            take += dfs(root->left->right, dp); 
+        }
+        
+        if(root->right) {
+            take += dfs(root->right->left, dp); 
+            take += dfs(root->right->right, dp); 
+        }
+        
+        int non_take = dfs(root->left, dp) + dfs(root->right, dp);
+        
+        return dp[root] = max(take, non_take);
+    }
+  public:
+    int getMaxSum(Node *root) {
+        // code here
+        unordered_map<Node*, int> dp;
+        return dfs(root, dp);
+    }
+};
