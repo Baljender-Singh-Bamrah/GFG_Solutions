@@ -1,0 +1,36 @@
+/*
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    // Constructor to initialize a new node
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+*/
+
+class Solution {
+    int sum=0;
+    void dfs(Node *root, int& l,int& r) {
+        if(!root) return;
+        
+        if(root->data >= l && root->data <=r) {
+            sum += root->data;
+        }
+        
+        dfs(root->left, l, r);
+        dfs(root->right, l, r);
+    }
+    
+  public:
+    int nodeSum(Node* root, int l, int r) {
+        // code here
+        dfs(root, l, r);
+        return sum;
+    }
+};
