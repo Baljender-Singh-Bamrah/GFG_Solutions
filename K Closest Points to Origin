@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+        // code here
+        priority_queue<pair<float, vector<int>>, vector<pair<float, vector<int>>>, greater<>> pq;
+        for(auto &it: points) {
+            float x = sqrt( it[0]*it[0] + it[1]*it[1] );
+            pq.push({x, it});
+        }
+        
+        vector<vector<int>> res;
+        
+        while(k-- && !pq.empty()) {
+            res.push_back(pq.top().second);
+            pq.pop();
+        }
+        
+        return res;
+    }
+};
