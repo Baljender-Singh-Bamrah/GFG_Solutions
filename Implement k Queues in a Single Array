@@ -1,0 +1,31 @@
+class kQueues {
+
+  public:
+    unordered_map<int,queue<int>> mp;
+    int size;
+    kQueues(int n, int k) {
+        size = n;
+    }
+
+    void enqueue(int x, int i) {
+        mp[i].push(x);
+        size--;
+    }
+
+    int dequeue(int i) {
+        if(isEmpty(i))
+        return -1;
+        int val = mp[i].front();
+        mp[i].pop();
+        size++;
+        return val;
+    }
+
+    bool isEmpty(int i) {
+        return mp[i].empty();
+    }
+
+    bool isFull() {
+        return size==0;
+    }
+};
